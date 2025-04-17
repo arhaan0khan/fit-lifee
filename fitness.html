@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitlife Gym</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #eee;
+    }
+
+    header {
+      background-color: #111;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #ffcc00;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Carousel */
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      overflow: hidden;
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 1s ease-in-out;
+      width: 400%;
+      height: 100%;
+    }
+
+    .carousel-images img {
+      width: 100vw;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .carousel-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: white;
+      font-size: 24px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+
+    /* Section styling */
+    .section {
+      padding: 60px 30px;
+      text-align: center;
+      background-image: url('https://images.unsplash.com/photo-1571019613914-85f342c51a06?auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: -1;
+    }
+
+    .section h3 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #ffcc00;
+    }
+
+    .programs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .program {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #fff;
+    }
+
+    .program:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 30px rgba(255, 204, 0, 0.3);
+    }
+
+    .program img {
+      width: 100%;
+      border-radius: 14px;
+      height: 180px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .program h4 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      color: #ffcc00;
+    }
+
+    .program p {
+      font-size: 15px;
+      color: #eee;
+      line-height: 1.6;
+    }
+
+    .about {
+      max-width: 900px;
+      margin: auto;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #ddd;
+    }
+
+    footer {
+      background-color: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 30px;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      nav a {
+        margin: 10px 0;
+        padding: 10px 15px;
+        width: 100%;
+        background-color: #222;
+        border-radius: 6px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .section h3 {
+        font-size: 24px;
+      }
+
+      .carousel {
+        height: 300px;
+      }
+
+      .about {
+        font-size: 16px;
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Fit-Life</h1>
+    <button class="menu-toggle" id="menuToggle">&#9776;</button>
+    <nav id="navbar">
+      <a href="fitness.html">Home</a>
+      <a href="programs.html">Programs</a>
+      <a href="About.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Carousel -->
+  <div class="carousel">
+    <div class="carousel-images" id="carouselImages">
+      <img src="https://images.pexels.com/photos/1552249/pexels-photo-1552249.jpeg" alt="Slide 1" />
+      <img src="push.jpg" alt="Slide 2" />
+      <img src="https://images.pexels.com/photos/5327523/pexels-photo-5327523.jpeg" alt="Slide 3" />
+      <img src="https://images.pexels.com/photos/3756523/pexels-photo-3756523.jpeg" alt="Slide 4" />
+    </div>
+    <div class="carousel-text" id="carousel-caption">Train Hard. Stay Strong.</div>
+  </div>
+
+  <script>
+    const imagesContainer = document.getElementById('carouselImages');
+    const captions = [
+      "Train Hard. Stay Strong.",
+      "Transform Your Body. Transform Your Life.",
+      "Push Your Limits.",
+      "Discipline Equals Freedom."
+    ];
+    const captionElement = document.getElementById('carousel-caption');
+    let currentIndex = 0;
+    const totalImages = captions.length;
+
+    function showSlide(index) {
+      imagesContainer.style.transform = `translateX(-${index * 100}vw)`;
+      captionElement.textContent = captions[index];
+    }
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalImages;
+      showSlide(currentIndex);
+    }, 4000); // 4 seconds interval
+  </script>
+
+  <!-- Programs Section -->
+  <section class="section">
+    <h3>Our Programs</h3>
+    <div class="programs">
+      <!-- Program cards remain unchanged -->
+      <div class="program"><img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=600&q=80" alt="Weight Training"><h4>Weight Training</h4><p>Build strength and muscle mass with resistance training techniques and expert guidance.</p></div>
+      <div class="program"><img src="cardio.webp" alt="Cardio"><h4>Cardio Blast</h4><p>Enhance endurance and torch calories with high-intensity cardio sessions.</p></div>
+      <div class="program"><img src="Yoga.avif" alt="Yoga"><h4>Yoga & Flexibility</h4><p>Calm your mind, improve posture, and gain flexibility through peaceful yoga flows.</p></div>
+      <div class="program"><img src="crossfit.jpg" alt="CrossFit"><h4>CrossFit</h4><p>Challenge yourself with functional movements, strength building, and endurance workouts.</p></div>
+      <div class="program"><img src="zumba.jpg" alt="Zumba"><h4>Zumba</h4><p>Dance your way to fitness with high-energy music and group classes that burn serious calories.</p></div>
+      <div class="program"><img src="img11.jpg" alt="Personal Training"><h4>Personal Coaching</h4><p>One-on-one guidance from professional trainers tailored to your goals and fitness level.</p></div>
+      <div class="program"><img src="hiit.jpeg" alt="HIIT"><h4>HIIT Sessions</h4><p>Burn fat and boost stamina with fast-paced High Intensity Interval Training routines.</p></div>
+      <div class="program"><img src="kickboxing.jpg" alt="Kickboxing"><h4>Kickboxing</h4><p>Improve agility and release stress through powerful kickboxing classes for all levels.</p></div>
+      <div class="program"><img src="https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg" alt="Pilates"><h4>Pilates</h4><p>Improve your core strength, stability, and posture with our dynamic Pilates sessions.</p></div>
+      <div class="program"><img src="https://images.pexels.com/photos/3756523/pexels-photo-3756523.jpeg" alt="Strength Circuit"><h4>Strength Circuit</h4><p>Combine weights and movement with circuit-style training to build full-body power and endurance.</p></div>
+      <div class="program"><img src="https://images.pexels.com/photos/3822197/pexels-photo-3822197.jpeg" alt="Meditation & Recovery"><h4>Meditation & Recovery</h4><p>Recharge your body and mind through guided meditation and active recovery sessions.</p></div>
+      <div class="program"><img src="nutrition.webp" alt="Nutrition Coaching"><h4>Nutrition Coaching</h4><p>Pair your workouts with smart eating habits through personalized nutrition plans.</p></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about">
+    <h3>About Us</h3>
+    <p>
+      At Fitlife, we believe fitness is not just a goal — it’s a lifestyle. Our gym is equipped with state-of-the-art machines, experienced trainers, and an energetic environment that motivates you to give your best every day. Whether you're here to lose weight, build muscle, or simply stay active, we’ve got something for everyone. Join our community and redefine your limits!
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Fitlife Gym | Designed for fitness lovers | Contact: <a href="mailto:arhaank667@gmail.com">arhaank667@gmail.com</a>
+  </footer>
+
+  <!-- Toggle Menu Script -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navbar = document.getElementById('navbar');
+
+    menuToggle.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
