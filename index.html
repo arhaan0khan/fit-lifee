@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fitlife Gym</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-
+<link rel="icon" href="favicon-32x32.png">
   <style>
     * {
       margin: 0;
@@ -34,14 +34,10 @@
       color: #ffcc00;
     }
 
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-
     nav a {
       color: #fff;
       text-decoration: none;
+      margin-left: 20px;
       font-size: 16px;
       transition: color 0.3s;
     }
@@ -49,6 +45,7 @@
     nav a:hover {
       color: #ffcc00;
     }
+
 
     .menu-toggle {
       display: none;
@@ -183,49 +180,43 @@
       text-decoration: none;
     }
 
-    /* Responsive styles */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    header {
+  background-color: #111;
+  color: #fff;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-      nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-      }
+header h1 {
+  font-size: 28px;
+  color: #ffcc00;
+}
 
-      nav a {
-        margin: 10px 0;
-        padding: 10px 15px;
-        width: 100%;
-        background-color: #222;
-        border-radius: 6px;
-      }
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 16px;
+  transition: color 0.3s;
+}
 
-      nav.active {
-        display: flex;
-      }
+nav a:hover {
+  color: #ffcc00;
+}
 
-      .menu-toggle {
-        display: block;
-      }
+/* Responsive styles for nav */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-      .section h3 {
-        font-size: 24px;
-      }
-
-      .carousel {
-        height: 300px;
-      }
-
-      .about {
-        font-size: 16px;
-        padding: 0 10px;
-      }
-    }
+  nav {
+    margin-top: 10px;
+  }
+}
   </style>
 </head>
 <body>
